@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- Changed BorderPane background from #FFF0E5 to Light Coral (#FFDAB9) -->
+<BorderPane style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shreyas.ViewController">
+    <top>
+        <!-- Changed VBox background from #4A2C2A (Dark Brown) to Charcoal Gray (#36454F) -->
+        <VBox style="-fx-background-color: #36454F;" BorderPane.alignment="CENTER">
+            <children>
+                <!-- 1. Header Title Label (Spans full width) -->
+                <Label fx:id="userInfoLabel" alignment="CENTER" prefHeight="50.0" prefWidth="1.7976931348623157E308" text="Greenhouse Control Panel" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
+
+                <!-- 2. Main Two-Column Layout HBox -->
+                <HBox alignment="TOP_CENTER" prefHeight="291.0" spacing="100.0">
+                    <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                    </padding>
+                    <children>
+
+                        <!-- COLUMN 1: Left Controls (Play/Start/Finish/Plant Select) -->
+                        <VBox prefWidth="160.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="pressToPlayButton" mnemonicParsing="false" onAction="#initializeGarden" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #C7DCA7;" text="Press to Play!" />
+                                <Button fx:id="iterateDayButton" mnemonicParsing="false" onAction="#iterateDayWithTimer" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #FFD700;" text="Start Day" />
+                                <Button fx:id="finish" mnemonicParsing="false" onAction="#finish" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #BB4444;" text="Finish" />
+
+                                <!-- Changed TextField background from #B8A29A (Light Brown) to Light Coral (#FFDAB9) -->
+                                <TextField editable="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #FFDAB9;" text="Select Plant Type" alignment="CENTER" />
+                                <VBox prefHeight="100.0" prefWidth="160.0" spacing="5.0">
+                                    <children>
+                                        <!-- Radio buttons text color remains WHITE as they are against the dark header background -->
+                                        <RadioButton fx:id="roseButton" mnemonicParsing="false" selected="true" text="Rose" textFill="WHITE">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="plantType" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="sunflowerButton" mnemonicParsing="false" text="Sunflower" textFill="WHITE" toggleGroup="$plantType" />
+                                        <RadioButton fx:id="lilyButton" mnemonicParsing="false" text="Lily" textFill="WHITE" toggleGroup="$plantType" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <!-- COLUMN 2: Right Action Buttons (No changes needed here) -->
+                        <VBox prefWidth="160.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="heatingButton" onAction="#adjustTemperature" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #C7DCA7;" text="Activate Heating" />
+                                <Button fx:id="sprinklersButton" onAction="#activateSprinklers" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #C7DCA7;" text="Activate Sprinklers" />
+                                <Button fx:id="pesticideButton" onAction="#applyPesticide" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #C7DCA7;" text="Apply Pesticide" />
+                                <Button fx:id="rainButton" mnemonicParsing="false" onAction="#activateRain" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #ADD8E6;" text="Rain" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <!-- Garden Grid remains unchanged, using BorderPane's center -->
+        <GridPane fx:id="gardenGrid" gridLinesVisible="false" onMouseClicked="#plantPlants" style="-fx-background-color: #38761D;" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+        </GridPane>
+    </center>
+</BorderPane>
